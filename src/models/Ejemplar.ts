@@ -34,7 +34,7 @@ Ejemplar.init(
         }
     },
     {
-        tableName: 'elemplares',
+        tableName: 'ejemplares',
         sequelize: database,
         timestamps: true
     }

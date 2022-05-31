@@ -5,8 +5,8 @@ import { Usuario } from './Usuario';
 export class Prestar extends Model {
     public UsuarioId!: number;
     public EjemplarId!: number;
-    public fechaDev!: string;
-    public fechapres!: string;
+    public fechaDev!: Date;
+    public fechapres!: Date;
     public activo!: Boolean;
 }
 
