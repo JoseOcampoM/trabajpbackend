@@ -19,7 +19,7 @@ export const database = new Sequelize(
 );
 
 
-database.sync({force: true})
+database.sync({force: false})
     .then(function () {
         console.log('Base de datos creada correctamente...');
     });
