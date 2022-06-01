@@ -1,5 +1,6 @@
 import { Model, DataType, DataTypes } from 'sequelize';
 import { database } from '../database/db';
+import { Ejemplar } from './Ejemplar';
 import { Usuario } from './Usuario';
 
 export class Prestamo extends Model {
@@ -42,3 +43,6 @@ Prestamo.init(
         timestamps: false
     }
 )
+
+Usuario.belongsToMany(Ejemplar, {through: Prestamo});
+Ejemplar.belongsToMany(Usuario, {through: Prestamo});

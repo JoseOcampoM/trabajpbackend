@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
+import { Ejemplar } from '../models/Ejemplar';
 import { Prestamo, PrestamoI } from '../models/Prestamo';
+import { Usuario } from '../models/Usuario';
 
 export class PrestamoController {
     public async getAllPrestamo(req: Request, res: Response){

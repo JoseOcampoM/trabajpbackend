@@ -1,11 +1,16 @@
 import { Request, Response } from 'express';
 import { Ejemplar, EjemplarI } from '../models/Ejemplar';
+import { Libro } from '../models/Libro';
 
 export class EjemplarController {
     public async getAllEjemplar(req: Request, res: Response){
         try{
             const ejemplar: EjemplarI[] = await Ejemplar.findAll(
                 {
+                    include:{
+                        model:Libro,
+                        attributes: ['titulo']
+                    },
                     where: {activo : true}
                 }
             )
@@ -35,14 +40,14 @@ export class EjemplarController {
 
     public async createEjemplar(req: Request, res: Response){
         const {
-            // libroId,
             localizacion,
+            LibroId,
             activo
         } = req.body;
         try{
             let body:EjemplarI = {
-                // libroId,
                 localizacion,
+                LibroId,
                 activo
             }
 
@@ -57,15 +62,15 @@ export class EjemplarController {
         const { id:pk } = req.params;
 
         const {
-            // libroId,
             localizacion,
+            LibroId,
             activo
         } = req.body
 
         try{
             let body:EjemplarI = {
-                // libroId,
                 localizacion,
+                LibroId,
                 activo
             }
 

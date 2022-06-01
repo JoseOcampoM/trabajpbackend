@@ -1,32 +1,25 @@
 import { Model, DataType, DataTypes } from 'sequelize';
 import { database } from '../database/db';
-import { Prestamo } from './Prestamo';
-import { Usuario } from './Usuario';
+import { Libro } from './Libro';
 
 export class Ejemplar extends Model {
-    // public libroId!: number;
     public localizacion!: string;
-    public activo!: Boolean;
+    public LibroId!: number 
+    public activo!: boolean;
 }
 
 export interface EjemplarI {
-    // libroId: number;
     localizacion: string;
-    activo: Boolean;
+    LibroId: number;
+    activo: boolean;
 }
 
 Ejemplar.init(
     {
-        // libroId: {
-        //     type: DataTypes.BOOLEAN,
-        //     allowNull: false
-        // },
-
         localizacion: {
             type: DataTypes.STRING,
             allowNull: false
-        },
-        
+        },       
         activo:{
             type: DataTypes.BOOLEAN,
             defaultValue: true,
@@ -40,8 +33,5 @@ Ejemplar.init(
     }
 )
 
-Usuario.belongsToMany(Ejemplar, {through: Prestamo});
-Ejemplar.belongsToMany(Usuario, {through: Prestamo});
-
-// Ejemplar.hasMany(Libro);
-// Libro.belongsTo(Ejemplar);
+Libro.hasMany(Ejemplar);
+Ejemplar.belongsTo(Libro);

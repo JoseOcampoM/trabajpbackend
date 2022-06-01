@@ -36,6 +36,8 @@ export class App {
         this.routePrv.usuarioRoutes.routes(this.app)
         this.routePrv.ejemplarRoutes.routes(this.app)
         this.routePrv.prestamoRoutes.routes(this.app)
+        this.routePrv.autorRoutes.routes(this.app)
+        this.routePrv.libroRoutes.routes(this.app)
 
     }
 
