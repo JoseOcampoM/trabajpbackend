@@ -1,6 +1,6 @@
 import { Model, DataType, DataTypes } from 'sequelize';
 import { database } from '../database/db';
-import { Prestar } from './Prestar';
+import { Prestamo } from './Prestamo';
 import { Usuario } from './Usuario';
 
 export class Ejemplar extends Model {
@@ -36,12 +36,12 @@ Ejemplar.init(
     {
         tableName: 'ejemplares',
         sequelize: database,
-        timestamps: true
+        timestamps: false
     }
 )
 
-Usuario.belongsToMany(Ejemplar, {through: Prestar});
-Ejemplar.belongsToMany(Usuario, {through: Prestar});
+Usuario.belongsToMany(Ejemplar, {through: Prestamo});
+Ejemplar.belongsToMany(Usuario, {through: Prestamo});
 
 // Ejemplar.hasMany(Libro);
 // Libro.belongsTo(Ejemplar);

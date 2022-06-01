@@ -1,7 +1,7 @@
 import express, { Application } from 'express';
 import morgan from 'morgan';
 import { Routes } from '../routes/index';
-var cors = require("cors")
+var cors = require('cors')
 
 export class App {
     app: Application;
@@ -35,7 +35,7 @@ export class App {
     Routes() {
         this.routePrv.usuarioRoutes.routes(this.app)
         this.routePrv.ejemplarRoutes.routes(this.app)
-        this.routePrv.prestarRoutes.routes(this.app)
+        this.routePrv.prestamoRoutes.routes(this.app)
 
     }
 

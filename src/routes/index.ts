@@ -1,10 +1,10 @@
 import { UsuarioRoutes } from "./usuario";
 import { EjemplarRoutes } from "./ejemplar";
-import { PrestarRoutes } from "./prestar";
+import { PrestamoRoutes } from "./prestamo";
 
 
 export class Routes {
     public usuarioRoutes: UsuarioRoutes = new UsuarioRoutes();
     public ejemplarRoutes: EjemplarRoutes = new EjemplarRoutes();
-    public prestarRoutes: PrestarRoutes = new PrestarRoutes();
+    public prestamoRoutes: PrestamoRoutes = new PrestamoRoutes();
 }

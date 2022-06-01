@@ -1,24 +1,24 @@
 import { Request, Response } from 'express';
-import { Prestar, PrestarI } from '../models/Prestar';
+import { Prestamo, PrestamoI } from '../models/Prestamo';
 
-export class PrestarController {
-    public async getAllPrestar(req: Request, res: Response){
+export class PrestamoController {
+    public async getAllPrestamo(req: Request, res: Response){
         try{
-            const prestar: PrestarI[] = await Prestar.findAll(
+            const prestamo: PrestamoI[] = await Prestamo.findAll(
                 {
                     where: {activo : true}
                 }
             )
-            res.status(200).json({prestar})
+            res.status(200).json({prestamo})
         } catch(error){
 
         }
     }
 
-    public async getOnePrestar(req: Request, res: Response){
+    public async getOnePrestamo(req: Request, res: Response){
         const { id: idParam } = req.params 
         try{
-            const prestar: PrestarI | null = await Prestar.findOne(
+            const prestamo: PrestamoI | null = await Prestamo.findOne(
                 {
                     where: {
                         id: idParam,
@@ -27,13 +27,13 @@ export class PrestarController {
                 }
             )
 
-            res.status(200).json(prestar)
+            res.status(200).json(prestamo)
         } catch(error){
             res.status(500).json({msg: "Error internal"})
         }
     }
 
-    public async createPrestar(req: Request, res: Response){
+    public async createPrestamo(req: Request, res: Response){
         const {
             UsuarioId,
             EjemplarId,
@@ -42,7 +42,7 @@ export class PrestarController {
             activo
         } = req.body;
         try{
-            let body:PrestarI = {
+            let body:PrestamoI = {
                 UsuarioId,
                 EjemplarId,
                 fechaDev,
@@ -50,14 +50,14 @@ export class PrestarController {
                 activo
             }
 
-            const prestar = await Prestar.create({...body});
-            res.status(200).json({prestar})
+            const prestamo = await Prestamo.create({...body});
+            res.status(200).json({prestamo})
         } catch(error){
 
         }
     }
 
-    public async updatePrestar(req: Request, res: Response){
+    public async updatePrestamo(req: Request, res: Response){
         const { id:pk } = req.params;
 
         const {
@@ -69,7 +69,7 @@ export class PrestarController {
         } = req.body
 
         try{
-            let body:PrestarI = {
+            let body:PrestamoI = {
                 UsuarioId,
                 EjemplarId,
                 fechaDev,
@@ -77,10 +77,10 @@ export class PrestarController {
                 activo
             }
 
-            const prestarExist: PrestarI | null = await Prestar.findByPk(pk);
+            const prestamoExist: PrestamoI | null = await Prestamo.findByPk(pk);
 
-            if(!prestarExist) return res.status(500).json({msg:"El usuario no esiste"})
-            await Prestar.update(
+            if(!prestamoExist) return res.status(500).json({msg:"El usuario no esiste"})
+            await Prestamo.update(
                 body, {
                     where: {id:pk}
                 }
@@ -90,17 +90,17 @@ export class PrestarController {
 
         }
 
-        const prestar: PrestarI | null = await Prestar.findByPk(pk);
-        if (prestar) return res.status(200).json({prestar})
+        const prestamo: PrestamoI | null = await Prestamo.findByPk(pk);
+        if (prestamo) return res.status(200).json({prestamo})
 
     }
 
-    public async deletePrestar(req: Request, res: Response){
+    public async deletePrestamo(req: Request, res: Response){
         const { id:pk } = req.params;
         try{
-            const prestarExist: PrestarI | null = await Prestar.findByPk(pk);
-            if(!prestarExist) return  res.status(500).json({msg: "El usuario no existe"})
-            await Prestar.update(
+            const prestamoExist: PrestamoI | null = await Prestamo.findByPk(pk);
+            if(!prestamoExist) return  res.status(500).json({msg: "El usuario no existe"})
+            await Prestamo.update(
                 {
                     activo: false,
                 },

@@ -2,7 +2,7 @@ import { Model, DataType, DataTypes } from 'sequelize';
 import { database } from '../database/db';
 import { Usuario } from './Usuario';
 
-export class Prestar extends Model {
+export class Prestamo extends Model {
     public UsuarioId!: number;
     public EjemplarId!: number;
     public fechaDev!: Date;
@@ -10,7 +10,7 @@ export class Prestar extends Model {
     public activo!: Boolean;
 }
 
-export interface PrestarI {
+export interface PrestamoI {
     UsuarioId: number;
     EjemplarId: number;
     fechaDev: Date;
@@ -18,18 +18,8 @@ export interface PrestarI {
     activo: Boolean;
 }
 
-Prestar.init(
+Prestamo.init(
     {
-        UsuarioId: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false
-        },
-
-        EjemplarId: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false
-        },
-
         fechaDev: {
             type: DataTypes.DATE,
             allowNull: false
@@ -49,6 +39,6 @@ Prestar.init(
     {
         tableName: 'prestamos',
         sequelize: database,
-        timestamps: true
+        timestamps: false
     }
 )
